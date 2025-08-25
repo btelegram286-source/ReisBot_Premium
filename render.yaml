@@ -1,0 +1,48 @@
+
+services:
+  - type: web
+    name: reis-bot
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"
+    envVars:
+      - key: BOT_TOKEN
+        fromSecret: BOT_TOKEN
+      - key: GITHUB_TOKEN
+        fromSecret: GITHUB_TOKEN
+      - key: GITHUB_USER
+        fromSecret: GITHUB_USER
+      - key: OPENAI_KEY
+        fromSecret: OPENAI_KEY
+      - key: RENDER_API_KEY
+        fromSecret: RENDER_API_KEY
+      - key: RENDER_OWNER_ID
+        fromSecret: RENDER_OWNER_ID
+  - type: web
+    name: reis-bot-panel
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python web_dashboard.py"
+    envVars:
+      - key: BOT_TOKEN
+        fromSecret: BOT_TOKEN
+      - key: GITHUB_TOKEN
+        fromSecret: GITHUB_TOKEN
+      - key: GITHUB_USER
+        fromSecret: GITHUB_USER
+      - key: OPENAI_KEY
+        fromSecret: OPENAI_KEY
+      - key: RENDER_API_KEY
+        fromSecret: RENDER_API_KEY
+      - key: RENDER_OWNER_ID
+        fromSecret: RENDER_OWNER_ID
+      - key: ADMIN_CHAT_ID
+        fromSecret: ADMIN_CHAT_ID
+      - key: DASHBOARD_PASSWORD
+        fromSecret: DASHBOARD_PASSWORD
+      - key: WEB_SECRET_KEY
+        fromSecret: WEB_SECRET_KEY
+      - key: WEB_FORCE_HTTPS
+        value: "1"
