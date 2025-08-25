@@ -1,0 +1,40 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "nixpacks": {
+      "plan": "python"
+    }
+  },
+  "services": [
+    {
+      "name": "reis-bot-panel",
+      "startCommand": "python web_dashboard.py",
+      "openPort": true,
+      "healthcheckPath": "/health",
+      "healthcheckTimeout": 100,
+      "env": {
+        "PORT": "5000",
+        "WEB_FORCE_HTTPS": "1",
+        "SCHEDULER_AUTOSTART": "1"
+      }
+    },
+    {
+      "name": "reis-bot-worker",
+      "startCommand": "python main.py",
+      "env": {
+        "SCHEDULER_AUTOSTART": "1"
+      }
+    }
+  ],
+  "variables": [
+    "BOT_TOKEN",
+    "ADMIN_CHAT_ID",
+    "GITHUB_TOKEN",
+    "GITHUB_USER",
+    "OPENAI_KEY",
+    "RENDER_API_KEY",
+    "RENDER_OWNER_ID",
+    "DASHBOARD_PASSWORD",
+    "WEB_SECRET_KEY"
+  ]
+}
